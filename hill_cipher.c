@@ -15,6 +15,37 @@ int dnt(int *a)
     return d;
 }
 
+void extuq(int a,int b){
+int q,a1,a2,a3,b1,b2,b3;
+a1 = 1;
+a2 = 0;
+a3 = a;
+b1 = 0;
+b2 = 1;
+b3 = b;
+while(1){
+if(b3 == 0){
+return 0;
+break;
+}
+if(b3 == 1){
+while(b2 < 0)
+b2 = b2 + a;
+return b2;
+break;
+}
+q = a3/b3;
+t1 = a1 - b1*q;
+t2 = a2 - b2*q;
+t3 = a3 - b3*q;
+a1 = b1;
+a2 = b2;
+a3 = b3;
+b2 = t1; 
+b2 = t2; 
+b3 = t3;
+} }
+
 int main() {
     int p,i,j,l;
     char key[9] = "gybnqkurp";
@@ -53,6 +84,27 @@ int main() {
     }
     for(i = 0; i < 3; i++)
         printf("\t%c",cip[i]);  
-    // Decryption
     
+    // Decryption
+    int dk_int[3][3];
+    int de_int[3];
+    char de[3];
+    int dtn_inv,temp;
+    int adj[3][3];
+    adj[0][0] = k_int[1][1]*k_int[2][2] - k_int[1][2]*k_int[2][1];
+    adj[0][1] = k_int[1][2]*k_int[2][0] - k_int[0][1]*k_int[2][2];
+    adj[0][2] = k_int[0][1]*k_int[1][2] - k_int[0][2]*k_int[1][1];
+    adj[1][0] = k_int[1][2]*k_int[2][0] - k_int[2][2]*k_int[1][0];
+    adj[1][1] = k_int[2][2]*k_int[0][0] - k_int[0][2]*k_int[2][0];
+    adj[1][2] = k_int[0][2]*k_int[1][0] - k_int[1][2]*k_int[0][0];
+    adj[2][0] = k_int[1][0]*k_int[2][1] - k_int[2][0]*k_int[1][1];
+    adj[2][1] = k_int[2][0]*k_int[0][1] - k_int[2][1]*k_int[0][0];
+    adj[2][2] = k_int[0][0]*k_int[1][1] - k_int[1][0]*k_int[0][1];
+    for(i=0;i<3;i++){
+        for(j=0;j<3;j++){
+            if(adj[i][j] < 0){
+                temp = adj[i][j]
+            }
+        }
+    }
 }
