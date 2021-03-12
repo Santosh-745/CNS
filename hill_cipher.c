@@ -15,8 +15,8 @@ int dnt(int *a)
     return d;
 }
 
-void extuq(int a,int b){
-int q,a1,a2,a3,b1,b2,b3;
+int extuq(int a,int b){
+int q,a1,a2,a3,b1,b2,b3,t1,t2,t3;
 a1 = 1;
 a2 = 0;
 a3 = a;
@@ -47,7 +47,7 @@ b3 = t3;
 } }
 
 int main() {
-    int p,i,j,l;
+    int p,i,j,l,d,dtn_inv;
     char key[9] = "gybnqkurp";
     int k_int[3][3];
     char plain[] = "act";
@@ -59,16 +59,19 @@ int main() {
         // scanf("%s",&key);
         // printf("%s",key);
         for(i=0;i<3;i++){
+            printf("\n");
             for(j=0;j<3;j++){
                 k_int[i][j] = key[i*3 + j] - 'a';
-                // printf("\t%d",k_int[i][j]);
+                // printf(" %d ",k_int[i][j]);
             }
         }
-    }while(dnt(&k_int[0][0]) == 0);
-    // printf("%d",dnt(&k_int[0][0]));
+        d = dnt(&k_int[0][0]);
+        dtn_inv = extuq(26,d);
+    }while(d == 0 || (d != 1 && dtn_inv == 0));
+    // printf("\n test %d %d",d,dtn_inv);
     // Encryption
     l = strlen(plain);
-    printf("\n test lenth %d",l);
+    // printf("\n test lenth %d",l);
     for(p = 0; p < l; p+=3){
         for(i = 0; i < 3; i++){
             c_int[i] = 0;
@@ -82,17 +85,18 @@ int main() {
             cip[p+i] = c_int[i] + 'a' ; 
         }
     }
-    for(i = 0; i < 3; i++)
-        printf("\t%c",cip[i]);  
+    // for(i = 0; i < 3; i++)
+    //     printf("\t%c",cip[i]);  
     
     // Decryption
     int dk_int[3][3];
     int de_int[3];
     char de[3];
-    int dtn_inv,temp;
+    int temp;
     int adj[3][3];
+    dtn_inv = extuq(26,d);
     adj[0][0] = k_int[1][1]*k_int[2][2] - k_int[1][2]*k_int[2][1];
-    adj[0][1] = k_int[1][2]*k_int[2][0] - k_int[0][1]*k_int[2][2];
+    adj[0][1] = k_int[2][1]*k_int[0][2] - k_int[0][1]*k_int[2][2];
     adj[0][2] = k_int[0][1]*k_int[1][2] - k_int[0][2]*k_int[1][1];
     adj[1][0] = k_int[1][2]*k_int[2][0] - k_int[2][2]*k_int[1][0];
     adj[1][1] = k_int[2][2]*k_int[0][0] - k_int[0][2]*k_int[2][0];
@@ -101,13 +105,33 @@ int main() {
     adj[2][1] = k_int[2][0]*k_int[0][1] - k_int[2][1]*k_int[0][0];
     adj[2][2] = k_int[0][0]*k_int[1][1] - k_int[1][0]*k_int[0][1];
     for(i=0;i<3;i++){
+        // printf("\n  test adj");
+        printf("\n");
         for(j=0;j<3;j++){
             if(adj[i][j] < 0){
+                // printf(" %d ",adj[i][j]);
                 temp = ((-1)*adj[i][j] ) / 26;
                 temp++;
+                // printf("\n test %d %d %d",temp,temp-1,adj[i][j]);
                 adj[i][j] = (temp * 26) + adj[i][j]; 
             }
-            dk_int[i][j] =  
+            dk_int[i][j] = (dtn_inv * adj[i][j]) % 26;
+            // printf(" %d ",dk_int[i][j]);
         }
     }
+    for(p = 0; p < l; p+=3){
+        for(i = 0; i < 3; i++){
+            de_int[i] = 0;
+            // printf("\n");
+            for(j = 0; j < 3; j++){
+                c_int[j] = (cip[p+j] - 'a');
+                // printf("\t test p_int %d",p_int[j]);
+                de_int[i] = de_int[i] + (dk_int[i][j] * c_int[j]) ;
+            }
+            de_int[i] = de_int[i] % 26; 
+            de[p+i] = de_int[i] + 'a' ; 
+        }
+    }
+    for(i = 0; i < 3; i++)
+        printf("%c",de[i]);
 }
