@@ -103,8 +103,11 @@ int main() {
     for(i=0;i<3;i++){
         for(j=0;j<3;j++){
             if(adj[i][j] < 0){
-                temp = adj[i][j]
+                temp = ((-1)*adj[i][j] ) / 26;
+                temp++;
+                adj[i][j] = (temp * 26) + adj[i][j]; 
             }
+            dk_int[i][j] =  
         }
     }
 }
