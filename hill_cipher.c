@@ -1,6 +1,6 @@
-// Online C compiler to run C program online
+
 #include <stdio.h>
-#include<string.h>
+#include <string.h>
 
 int dnt(int *a)
 {
@@ -19,7 +19,7 @@ int main() {
     int p,i,j,l;
     char key[9] = "gybnqkurp";
     int k_int[3][3];
-    char plain[3] = "act";
+    char plain[] = "act";
     int p_int[3];
     char cip[3] ;
     int c_int[3];
@@ -33,10 +33,11 @@ int main() {
                 // printf("\t%d",k_int[i][j]);
             }
         }
-    }while(dnt(&k_int) == 0);
-    // printf("%d",dnt(&k_int));
+    }while(dnt(&k_int[0][0]) == 0);
+    // printf("%d",dnt(&k_int[0][0]));
+    // Encryption
     l = strlen(plain);
-    
+    printf("\n test lenth %d",l);
     for(p = 0; p < l; p+=3){
         for(i = 0; i < 3; i++){
             c_int[i] = 0;
@@ -45,9 +46,13 @@ int main() {
                 p_int[j] = (plain[p+j] - 'a');
                 // printf("\t test p_int %d",p_int[j]);
                 c_int[i] = c_int[i] + (k_int[i][j] * p_int[j]) ;
-            }    
+            }
+            c_int[i] = c_int[i] % 26; 
+            cip[p+i] = c_int[i] + 'a' ; 
         }
     }
     for(i = 0; i < 3; i++)
-        printf("\t%d",c_int[i]);        
+        printf("\t%c",cip[i]);  
+    // Decryption
+    
 }
