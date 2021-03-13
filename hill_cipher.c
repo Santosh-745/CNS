@@ -1,4 +1,5 @@
 
+// Online C compiler to run C program online
 #include <stdio.h>
 #include <string.h>
 
@@ -50,7 +51,7 @@ int main() {
     int p,i,j,l,d,dtn_inv;
     char key[9] = "gybnqkurp";
     int k_int[3][3];
-    char plain[] = "act";
+    char plain[] = "gfgact";
     int p_int[3];
     char cip[3] ;
     int c_int[3];
@@ -68,6 +69,7 @@ int main() {
         d = dnt(&k_int[0][0]);
         dtn_inv = extuq(26,d);
     }while(d == 0 || (d != 1 && dtn_inv == 0));
+    //  || (d != 1 && dtn_inv == 0)
     // printf("\n test %d %d",d,dtn_inv);
     // Encryption
     l = strlen(plain);
@@ -75,7 +77,7 @@ int main() {
     for(p = 0; p < l; p+=3){
         for(i = 0; i < 3; i++){
             c_int[i] = 0;
-            // printf("\n");
+            printf("\n");
             for(j = 0; j < 3; j++){
                 p_int[j] = (plain[p+j] - 'a');
                 // printf("\t test p_int %d",p_int[j]);
@@ -85,8 +87,8 @@ int main() {
             cip[p+i] = c_int[i] + 'a' ; 
         }
     }
-    // for(i = 0; i < 3; i++)
-    //     printf("\t%c",cip[i]);  
+    for(i = 0; i < l; i++)
+        printf("%c",cip[i]);  
     
     // Decryption
     int dk_int[3][3];
@@ -94,7 +96,6 @@ int main() {
     char de[3];
     int temp;
     int adj[3][3];
-    dtn_inv = extuq(26,d);
     adj[0][0] = k_int[1][1]*k_int[2][2] - k_int[1][2]*k_int[2][1];
     adj[0][1] = k_int[2][1]*k_int[0][2] - k_int[0][1]*k_int[2][2];
     adj[0][2] = k_int[0][1]*k_int[1][2] - k_int[0][2]*k_int[1][1];
@@ -119,19 +120,24 @@ int main() {
             // printf(" %d ",dk_int[i][j]);
         }
     }
+    printf("\n");
+    for(i = 0; i < l; i++)
+        printf("%c",cip[i]); 
     for(p = 0; p < l; p+=3){
         for(i = 0; i < 3; i++){
             de_int[i] = 0;
-            // printf("\n");
+            printf("\n");
             for(j = 0; j < 3; j++){
+                printf("\t test p j %d %d",p,j);
+                printf("\t test cip %c",cip[p+j]);
                 c_int[j] = (cip[p+j] - 'a');
-                // printf("\t test p_int %d",p_int[j]);
+                // printf("\t test c_int %d",c_int[j]);
                 de_int[i] = de_int[i] + (dk_int[i][j] * c_int[j]) ;
             }
             de_int[i] = de_int[i] % 26; 
             de[p+i] = de_int[i] + 'a' ; 
         }
     }
-    for(i = 0; i < 3; i++)
-        printf("%c",de[i]);
+    for(i = 0; i < l; i++)
+        printf(" %c",de[i]);
 }
