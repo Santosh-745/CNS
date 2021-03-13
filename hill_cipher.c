@@ -1,4 +1,3 @@
-
 // Online C compiler to run C program online
 #include <stdio.h>
 #include <string.h>
@@ -52,14 +51,14 @@ int main() {
     char key[] = "gybnqkurp";
     int k_int[3][3];
     char plain[50];
-    printf("\n ==> Enter the Plain text ==> ");
+    printf("\n==>  Enter the Plain text ==> ");
     scanf("%s",&plain);
     l = strlen(plain);
     int p_int[3];
     char cip[l] ;
     int c_int[3];
     do{
-        printf("\n ==>  Enter Key text ==> ");
+        printf("\n==>  Enter Key text ==> ");
         scanf("%s",&key);
         // printf("%s",key);
         for(i=0;i<3;i++){
@@ -91,7 +90,7 @@ int main() {
             cip[p+i] = c_int[i] + 'a' ; 
         }
     }
-    printf("\n==> ");
+    printf("\n==>  CIPHER TEXT ==>  ");
     for(i = 0; i < l; i++)
         printf("%c",cip[i]);  
     
@@ -143,7 +142,7 @@ int main() {
             de[p+i] = de_int[i] + 'a' ; 
         }
     }
-    printf("\n==> ");
+    printf("\n==>  DECRYPTED TEXT  ==>  ");
     for(i = 0; i < l; i++)
         printf("%c",de[i]);
 }
