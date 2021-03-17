@@ -47,4 +47,34 @@ int main() {
     // for(i=0;i<l;i++)
     //     printf(" %c ",cip[i]);
     
+    int start,h;
+    start = 0;
+    h = 1;
+    k = 0;
+    i = 0;
+    j = 0;
+    d = 4;
+    char b[30][30] = {0};
+    while(i < d || k < l){
+        b[i][start] = cip[k];
+        j = start;
+        while( (j + 2 * (d - 1)) < l){
+            if(i == 0 || i == d-1){
+                j = j + 2 * (d - 1);
+                a[i][j] = cip[k++];
+            }
+            else {
+                j = j + 2 * (d - 1);
+                a[i][j] = cip[k++];
+                if((j + 2 * (h - 1)) < l){
+                    j = j + 2 * (h - 1);
+                    a[i][j] = cip[k++];
+                }
+            }
+        }
+        d--;
+        h++;
+        i++;
+        start++;
+    }
 }
