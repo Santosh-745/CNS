@@ -60,11 +60,11 @@ int main() {
         b[i][start] = cip[k++];
         j = start;
         while( (j + 2 * (d - 1)) < l){
-            if(i == 0 || i == d-1){
+            if(i == 0 || i == t-1){
                 j = j + 2 * (d - 1);
                 b[i][j] = cip[k++];
             }
-            else {
+            else if(i > 0 && i < t-1){
                 j = j + 2 * (d - 1);
                 b[i][j] = cip[k++];
                 if((j + 2 * (h - 1)) < l){
