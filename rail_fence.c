@@ -3,7 +3,7 @@
 #include <string.h>
 
 int main() {
-    int l,k,d=4,ud,i,j;
+    int l,k,d=4,ud,i,j,t;
     char a[30][30] = {0};
     char plain[] = "thisisrailfence";
     char cip[50];
@@ -54,21 +54,22 @@ int main() {
     i = 0;
     j = 0;
     d = 4;
+    t = d;
     char b[30][30] = {0};
-    while(i < d || k < l){
-        b[i][start] = cip[k];
+    while(i < t || k < l){
+        b[i][start] = cip[k++];
         j = start;
         while( (j + 2 * (d - 1)) < l){
             if(i == 0 || i == d-1){
                 j = j + 2 * (d - 1);
-                a[i][j] = cip[k++];
+                b[i][j] = cip[k++];
             }
             else {
                 j = j + 2 * (d - 1);
-                a[i][j] = cip[k++];
+                b[i][j] = cip[k++];
                 if((j + 2 * (h - 1)) < l){
                     j = j + 2 * (h - 1);
-                    a[i][j] = cip[k++];
+                    b[i][j] = cip[k++];
                 }
             }
         }
@@ -77,4 +78,11 @@ int main() {
         i++;
         start++;
     }
+    for(i=0;i<t;i++){
+        printf("\n");
+        for(j=0;j<l;j++){
+            printf(" %c ",b[i][j]);
+        }
+    }
+
 }
