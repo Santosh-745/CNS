@@ -95,13 +95,13 @@ void left_cir_shift(int x)
 	if (x == 0 || x == 1 || x == 8 || x == 15)
 	{
 		t1 = bin[0];
-		for (i = 1; i < 27; i++)
+		for (i = 1; i < 28; i++)
 		{
 			bin[i - 1] = bin[i];
 		}
 		bin[27] = t1;
 		t1 = bin[28];
-		for (i = 29; i < 55; i++)
+		for (i = 29; i < 56; i++)
 		{
 			bin[i - 1] = bin[i];
 		}
@@ -111,7 +111,7 @@ void left_cir_shift(int x)
 	{
 		t1 = bin[0];
 		t2 = bin[1];
-		for (i = 2; i < 27; i++)
+		for (i = 2; i < 28; i++)
 		{
 			bin[i - 2] = bin[i];
 		}
@@ -119,7 +119,7 @@ void left_cir_shift(int x)
 		bin[27] = t2;
 		t1 = bin[28];
 		t2 = bin[29];
-		for (i = 30; i < 55; i++)
+		for (i = 30; i < 56; i++)
 		{
 			bin[i - 2] = bin[i];
 		}
@@ -131,17 +131,23 @@ void key_generation()
 {
 	int i, j, n;
 	hex2bin(key);
-	// for(i = 0;i < 64;i++)
-	// {
-	// 	if(i%4 == 0)
-	// 	    printf("\n");
-	// 	printf(" %d=%d ",i+1,bin[i]);
-	// }
+	/*for(i = 0;i < 64;i++)
+	{
+		if(i%4 == 0)
+		    printf("\n");
+		printf(" %d=%d ",i+1,bin[i]);
+	}*/
 	perm(kp1);
+	/*for(i = 0;i < 64;i++)
+	{
+		if(i%4 == 0)
+		    printf("\n");
+		printf(" %d=%d ",i+1,bin[i]);
+	}*/
 	bin2hex(key);
-	// printf("\n");
-	// for(i=0;i<16;i++)
-	//     printf("%c",key[i]);
+	/*printf("\n");
+	for(i=0;i<14;i++)
+	    printf("%c",key[i]);*/
 	for (i = 0; i < 16; i++)
 	{
 		hex2bin(key);
@@ -149,15 +155,11 @@ void key_generation()
 		bin2hex(key);
 		perm(kp2);
 		bin2hex(keys[i]);
-	}
-	printf("\n");
-	for(i=0;i<16;i++)
-	{
-		for(j=0;j<16;j++)
+		/*printf("\n");
+		for(j=0;j<12;j++)
 		{
 			printf("%c",keys[i][j]);
-		}
-		printf("\n");
+		}*/
 	}
 }
 void initial_permutation()
